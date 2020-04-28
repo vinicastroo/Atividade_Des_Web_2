@@ -8,7 +8,6 @@
         <title>Laravel</title>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
-        <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
 
     </head>
@@ -39,6 +38,11 @@
         <br/>
 
             <h2>Gerenciamento de clientes</h2>
+            <br/>
+
+            <button type="button" class="btn btn-success ml-3" >Incluir</button>
+
+            <br/>
             <br/>
             <table class="table">
                 <thead class="thead-dark">
@@ -72,7 +76,13 @@
                             <td>{{$cliente->Pais}}</td>
                             <td>{{$cliente->Telefone}}</td>
                             <td>{{$cliente->Fax}}</td>
-                            <td><button type="button" class="btn btn-danger">Excluir</button></td>
+                            <td>
+                                <form action="{{route('clientes.destroy', array($cliente->IDCliente))}}" method="POST">
+                                    @csrf
+                                    @method('DELETE')
+                                    <input type="submit" value="Deletar" class="btn btn-sm btn-danger">
+                                </form>
+                            </td>
                             <td><button type="button" class="btn btn-warning">Alterar</button></td>
                         </tr>
                     @endforeach

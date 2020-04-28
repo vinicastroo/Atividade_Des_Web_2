@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use App\Models\Territorio;
 
 class TerritorioController extends Controller
 {
@@ -25,7 +26,9 @@ class TerritorioController extends Controller
      */
     public function create()
     {
-        //
+        $categoria = DB::table('territorios')->select('IDTerritorios')->orderBy('IDTerritorios','DESC')->limit(1)->get();
+
+        return view('territorios.create', compact('territorios'));
     }
 
     /**
@@ -36,8 +39,13 @@ class TerritorioController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = $request->all();
+
+        $territorios = \App\Territorio::create($data);
+
+        return redirect()->route('territorios.index');
     }
+
 
     /**
      * Display the specified resource.
@@ -81,6 +89,6 @@ class TerritorioController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $response = Territorio::where('IDTerritorio', $id)->delete();
     }
 }

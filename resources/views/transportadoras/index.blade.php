@@ -47,6 +47,8 @@
                         <th scope="col">#</th>
                         <th scope="col">Nome Companhia</th>
                         <th scope="col">Telefone</th>
+                        <th></th>
+                        <th></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -55,6 +57,14 @@
                             <td>{{$transportadora->IDTransportadora}}</td>
                             <td>{{$transportadora->NomeConpanhia}}</td>
                             <td>{{$transportadora->Telefone}}</td>
+                            <td>
+                                <form action="{{route('transportadoras.destroy', array($transportadora->IDTransportadora))}}" method="POST">
+                                    @csrf
+                                    @method('DELETE')
+                                    <input type="submit" value="Deletar" class="btn btn-sm btn-danger">
+                                </form>
+                            </td>
+                            <td><button type="button" class="btn btn-warning">Alterar</button></td>
                         </tr>
                     @endforeach
                 </tbody>

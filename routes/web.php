@@ -17,6 +17,8 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/clientes', 'ClientesController@index');
-Route::get('/transportadoras', 'TransportadoraController@index');
-Route::get('/territorios', 'TerritorioController@index');
+Route::resource('/clientes', 'ClientesController');
+
+Route::resource('/transportadoras', 'TransportadoraController');
+
+Route::resource('/territorios', 'TerritorioController');

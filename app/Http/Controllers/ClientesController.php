@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
+use App\Models\Clientes;
 
 class ClientesController extends Controller
 {
@@ -14,7 +14,8 @@ class ClientesController extends Controller
      */
     public function index()
     {
-        $clientes = DB::table('clientes')->get();
+        $clientes = Clientes::all();
+
         return view('clientes.index', ['clientes' => $clientes]);
     }
 
@@ -25,7 +26,9 @@ class ClientesController extends Controller
      */
     public function create()
     {
-        //
+        $categoria = DB::table('clientes')->select('IDClientes')->orderBy('IDClientes','DESC')->limit(1)->get();
+
+        return view('clientes.create', compact('clientes'));
     }
 
     /**
@@ -36,7 +39,11 @@ class ClientesController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = $request->all();
+
+        $clientes = \App\Clientes::create($data);
+
+        return redirect()->route('clientes.index');
     }
 
     /**
@@ -47,7 +54,9 @@ class ClientesController extends Controller
      */
     public function show($id)
     {
-        //
+        $cliente = Clientes::where('IDCliente', $id)->first();
+
+        return json_encode($cliente);
     }
 
     /**
@@ -81,6 +90,6 @@ class ClientesController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $response = Clientes::where('IDCliente', $id)->delete();
     }
 }

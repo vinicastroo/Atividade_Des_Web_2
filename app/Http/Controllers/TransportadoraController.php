@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use App\Models\Transportadora;
 
 class TransportadoraController extends Controller
 {
@@ -14,7 +15,7 @@ class TransportadoraController extends Controller
      */
     public function index()
     {
-        $transportadoras = DB::table('transportadoras')->get();
+        $transportadoras =  Transportadora::all();
         return view('transportadoras.index', ['transportadoras' => $transportadoras]);
     }
 
@@ -25,7 +26,9 @@ class TransportadoraController extends Controller
      */
     public function create()
     {
-        //
+        $categoria = DB::table('transportadoras')->select('IDTransportadoras')->orderBy('IDTransportadora','DESC')->limit(1)->get();
+
+        return view('transportadoras.create', compact('transportadoras'));
     }
 
     /**
@@ -36,7 +39,11 @@ class TransportadoraController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = $request->all();
+
+        $transportadoras = \App\Transportadora::create($data);
+
+        return redirect()->route('transportadora.index');
     }
 
     /**
@@ -81,6 +88,6 @@ class TransportadoraController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $response = Transportadora::where('IDTransportadora', $id)->delete();
     }
 }
