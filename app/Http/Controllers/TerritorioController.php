@@ -26,7 +26,7 @@ class TerritorioController extends Controller
      */
     public function create()
     {
-        $categoria = DB::table('territorios')->select('IDTerritorios')->orderBy('IDTerritorios','DESC')->limit(1)->get();
+        $territorios = DB::table('territorios')->select('IDTerritorio')->orderBy('IDTerritorio','DESC')->limit(1)->get();
 
         return view('territorios.create', compact('territorios'));
     }
@@ -41,7 +41,7 @@ class TerritorioController extends Controller
     {
         $data = $request->all();
 
-        $territorios = \App\Territorio::create($data);
+        $territorios = \App\Models\Territorio::create($data);
 
         return redirect()->route('territorios.index');
     }
@@ -66,7 +66,9 @@ class TerritorioController extends Controller
      */
     public function edit($id)
     {
-        //
+        $territorio = \App\Models\Territorio::where('IDTerritorio', $id)->first();
+
+        return view('territorios.edit', compact('territorio'));
     }
 
     /**
@@ -78,7 +80,12 @@ class TerritorioController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $data = $request->all();
+
+        $territorio = \App\Models\Territorio::where('IDTerritorio', $id)->first();
+        $territorio->update($data);
+
+        return redirect()->route('territorios.index');
     }
 
     /**

@@ -6,7 +6,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class Transportadora extends Model
 {
+    public $timestamps = false;
+
     protected $fillable = [
-       'IDTransportadora', 'nomeConpanhia', 'telefone'
+       'IDTransportadora', 'NomeConpanhia', 'Telefone'
     ];
 }

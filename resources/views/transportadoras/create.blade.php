@@ -38,22 +38,22 @@
         <br/>
 
         <div class="container">
-            <h1>Criar Territorio</h1>
+            <h1>Criar Transportadoras</h1>
 
-            <form action="{{route('territorios.store')}}" method="POST">
+            <form action="{{route('transportadoras.store')}}" method="POST">
                 @csrf
 
-                <input type="hidden" name="IDTerritorio" value="{{$territorios[0]->IDTerritorio + 1}}">
+                <input type="hidden" name="IDTransportadora" value="{{$transportadoras[0]->IDTransportadora + 1}}">
 
 
                 <div class="form-group">
-                    <label for="DescricaoTerritorio">DescricaoTerritorio</label>
-                    <input type="text" name="DescricaoTerritorio" id="DescricaoTerritorio" class="form-control">
+                    <label for="NomeConpanhia">NomeConpanhia</label>
+                    <input type="text" name="NomeConpanhia" id="NomeConpanhia" class="form-control">
                 </div>
 
                 <div class="form-group">
-                    <label for="IDRegiao">IDRegiao</label>
-                    <input type="text" name="IDRegiao" id="IDRegiao" class="form-control">
+                    <label for="Telefone">Telefone</label>
+                    <input type="text" name="Telefone" id="Telefone" class="form-control">
                 </div>
 
                 <input type="submit" value="Criar Territorio" class="btn btn-lg btn-primary">

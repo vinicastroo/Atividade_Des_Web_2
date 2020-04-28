@@ -39,7 +39,8 @@
 
         <br/>
 
-            <h2>Gerenciamento de clientes</h2>
+            <h2>Gerenciamento de Transportadoras</h2>
+            <a class="btn btn-success" href="{{route('transportadoras.create')}}">Criar</a>
             <br/>
             <table class="table">
                 <thead class="thead-dark">
@@ -64,7 +65,7 @@
                                     <input type="submit" value="Deletar" class="btn btn-sm btn-danger">
                                 </form>
                             </td>
-                            <td><button type="button" class="btn btn-warning">Alterar</button></td>
+                            <td> <a href="{{route('transportadoras.edit', array($transportadora->IDTransportadora))}}"class="btn btn-warning">Alterar</a></td>
                         </tr>
                     @endforeach
                 </tbody>

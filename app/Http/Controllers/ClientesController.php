@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Clientes;
+use Illuminate\Support\Facades\DB;
 
 class ClientesController extends Controller
 {
@@ -26,7 +27,7 @@ class ClientesController extends Controller
      */
     public function create()
     {
-        $categoria = DB::table('clientes')->select('IDClientes')->orderBy('IDClientes','DESC')->limit(1)->get();
+        $clientes = DB::table('clientes')->select('IDCliente')->orderBy('IDCliente','DESC')->limit(1)->get();
 
         return view('clientes.create', compact('clientes'));
     }
@@ -41,7 +42,7 @@ class ClientesController extends Controller
     {
         $data = $request->all();
 
-        $clientes = \App\Clientes::create($data);
+        $clientes = \App\Models\Clientes::create($data);
 
         return redirect()->route('clientes.index');
     }
@@ -54,9 +55,7 @@ class ClientesController extends Controller
      */
     public function show($id)
     {
-        $cliente = Clientes::where('IDCliente', $id)->first();
-
-        return json_encode($cliente);
+         //
     }
 
     /**
@@ -67,7 +66,9 @@ class ClientesController extends Controller
      */
     public function edit($id)
     {
-        //
+        $cliente = \App\Models\Clientes::where('IDCliente', $id)->first();
+
+        return view('clientes.edit', compact('cliente'));
     }
 
     /**
@@ -79,7 +80,12 @@ class ClientesController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $data = $request->all();
+
+        $cliente = \App\Models\Clientes::where('IDCliente', $id)->first();
+        $cliente->update($data);
+
+        return redirect()->route('clientes.index');
     }
 
     /**
@@ -91,5 +97,8 @@ class ClientesController extends Controller
     public function destroy($id)
     {
         $response = Clientes::where('IDCliente', $id)->delete();
+
+        $clientes = Clientes::all();
+        return view('clientes.index', ['clientes' => $clientes]);
     }
 }

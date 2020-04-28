@@ -26,7 +26,7 @@ class TransportadoraController extends Controller
      */
     public function create()
     {
-        $categoria = DB::table('transportadoras')->select('IDTransportadoras')->orderBy('IDTransportadora','DESC')->limit(1)->get();
+        $transportadoras = DB::table('transportadoras')->select('IDTransportadora')->orderBy('IDTransportadora','DESC')->limit(1)->get();
 
         return view('transportadoras.create', compact('transportadoras'));
     }
@@ -41,9 +41,9 @@ class TransportadoraController extends Controller
     {
         $data = $request->all();
 
-        $transportadoras = \App\Transportadora::create($data);
+        $transportadoras = \App\Models\Transportadora::create($data);
 
-        return redirect()->route('transportadora.index');
+        return redirect()->route('transportadoras.index');
     }
 
     /**
@@ -65,7 +65,9 @@ class TransportadoraController extends Controller
      */
     public function edit($id)
     {
-        //
+        $transportadora = \App\Models\Transportadora::where('IDTransportadora', $id)->first();
+
+        return view('transportadoras.edit', compact('transportadora'));
     }
 
     /**
@@ -77,7 +79,12 @@ class TransportadoraController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $data = $request->all();
+
+        $transportadora = \App\Transportadora::where('IDTransportadora', $id)->first();
+        $transportadora->update($data);
+
+        return redirect()->route('transportadoras.index');
     }
 
     /**

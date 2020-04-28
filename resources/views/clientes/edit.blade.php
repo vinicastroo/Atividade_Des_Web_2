@@ -37,66 +37,63 @@
 
         <br/>
         <div class="container">
-        <h1>Criar Cliente</h1>
-        <form action="{{route('clientes.store')}}" method="POST">
-            @csrf
+        <h1>Alterar Cliente</h1>
 
-            <div class="form-group">
-                <label for="IDCliente">IDCliente</label>
-                <input type="text" name="IDCliente" id="IDCliente" class="form-control">
-            </div>
+        <form action="{{route('clientes.update', array($cliente->IDCliente))}}" method="POST">
+            @csrf
+            @method('PUT')
 
             <div class="form-group">
                 <label for="NomeCompanhia">NomeCompanhia</label>
-                <input type="text" name="NomeCompanhia" id="NomeCompanhia" class="form-control">
+                <input type="text" name="NomeCompanhia" id="NomeCompanhia" class="form-control" value="{{$cliente->NomeCompanhia}}">
             </div>
 
             <div class="form-group">
                 <label for="NomeContato">NomeContato</label>
-                <input type="text" name="NomeContato" id="NomeContato" required class="form-control">
+                <input type="text" name="NomeContato" id="NomeContato" required class="form-control" value="{{$cliente->NomeContato}}">
             </div>
 
             <div class="form-group">
                 <label for="TituloContato">TituloContato</label>
-                <input type="text" name="TituloContato" id="TituloContato" required class="form-control">
+                <input type="text" name="TituloContato" id="TituloContato" required class="form-control" value="{{$cliente->TituloContato}}">
             </div>
 
             <div class="form-group">
                 <label for="Endereco">Endereco</label>
-                <input type="text" name="Endereco" id="Endereco" required class="form-control">
+                <input type="text" name="Endereco" id="Endereco" required class="form-control" value="{{$cliente->Endereco}}">
             </div>
 
             <div class="form-group">
                 <label for="Cidade">Cidade</label>
-                <input type="text" name="Cidade" id="Cidade" required class="form-control">
+                <input type="text" name="Cidade" id="Cidade" required class="form-control" value="{{$cliente->Cidade}}">
             </div>
 
             <div class="form-group">
                 <label for="Regiao">Regiao</label>
-                <input type="text" name="Regiao" id="Regiao" required class="form-control">
+                <input type="text" name="Regiao" id="Regiao" required class="form-control" value="{{$cliente->Regiao}}">
             </div>
 
             <div class="form-group">
                 <label for="CEP">CEP</label>
-                <input type="text" name="CEP" id="CEP" required class="form-control">
+                <input type="text" name="CEP" id="CEP" required class="form-control" value="{{$cliente->CEP}}">
             </div>
 
             <div class="form-group">
                 <label for="Pais">Pais</label>
-                <input type="text" name="Pais" id="Pais" required class="form-control">
+                <input type="text" name="Pais" id="Pais" required class="form-control" value="{{$cliente->Pais}}">
             </div>
 
             <div class="form-group">
                 <label for="Telefone">Telefone</label>
-                <input type="text" name="Telefone" id="Telefone" required class="form-control">
+                <input type="text" name="Telefone" id="Telefone" required class="form-control" value="{{$cliente->Telefone}}">
             </div>
 
             <div class="form-group">
                 <label for="Fax">Fax</label>
-                <input type="text" name="Fax" id="Fax" required class="form-control">
+                <input type="text" name="Fax" id="Fax" required class="form-control" value="{{$cliente->Fax}}">
             </div>
 
-            <input type="submit" value="Criar Categoria" class="btn btn-lg btn-primary">
+            <input type="submit" value="Alterar Categoria" class="btn btn-lg btn-primary">
         </form>
         </div>
 

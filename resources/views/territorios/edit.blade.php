@@ -40,20 +40,18 @@
         <div class="container">
             <h1>Criar Territorio</h1>
 
-            <form action="{{route('territorios.store')}}" method="POST">
+            <form action="{{route('territorios.update', array($territorio->IDTerritorio))}}" method="POST">
                 @csrf
-
-                <input type="hidden" name="IDTerritorio" value="{{$territorios[0]->IDTerritorio + 1}}">
-
+                @method('PUT')
 
                 <div class="form-group">
                     <label for="DescricaoTerritorio">DescricaoTerritorio</label>
-                    <input type="text" name="DescricaoTerritorio" id="DescricaoTerritorio" class="form-control">
+                    <input type="text" name="DescricaoTerritorio" id="DescricaoTerritorio" class="form-control"  value="{{$territorio->DescricaoTerritorio}}">
                 </div>
 
                 <div class="form-group">
                     <label for="IDRegiao">IDRegiao</label>
-                    <input type="text" name="IDRegiao" id="IDRegiao" class="form-control">
+                    <input type="text" name="IDRegiao" id="IDRegiao" class="form-control" value="{{$territorio->IDRegiao}}">
                 </div>
 
                 <input type="submit" value="Criar Territorio" class="btn btn-lg btn-primary">

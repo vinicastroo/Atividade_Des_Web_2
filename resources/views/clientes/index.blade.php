@@ -40,7 +40,7 @@
             <h2>Gerenciamento de clientes</h2>
             <br/>
 
-            <button type="button" class="btn btn-success ml-3" >Incluir</button>
+            <a  class="btn btn-success" href="{{route('clientes.create')}}">Criar</a>
 
             <br/>
             <br/>
@@ -83,7 +83,7 @@
                                     <input type="submit" value="Deletar" class="btn btn-sm btn-danger">
                                 </form>
                             </td>
-                            <td><button type="button" class="btn btn-warning">Alterar</button></td>
+                            <td><a href="{{route('clientes.edit', array($cliente->IDCliente))}}"class="btn btn-warning">Alterar</a></td>
                         </tr>
                     @endforeach
                 </tbody>

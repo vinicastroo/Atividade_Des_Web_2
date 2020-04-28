@@ -40,6 +40,7 @@
 
             <h2>Gerenciamento de Territorios</h2>
             <br/>
+            <a class="btn btn-success" href="{{route('territorios.create')}}">Criar</a>
             <table class="table">
                 <thead class="thead-dark">
                     <tr>
@@ -63,7 +64,7 @@
                                     <input type="submit" value="Deletar" class="btn btn-sm btn-danger">
                                 </form>
                             </td>
-                            <td><button type="button" class="btn btn-warning">Alterar</button></td>
+                            <td><a href="{{route('territorios.edit', array($territorio->IDTerritorio))}}"class="btn btn-warning">Alterar</a></td>
                         </tr>
                     @endforeach
                 </tbody>
